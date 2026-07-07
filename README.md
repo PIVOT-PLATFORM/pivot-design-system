@@ -48,11 +48,13 @@ npm run build   # produit dist/
 
 ## Publier une release
 
-Les releases sont publiées automatiquement sur GitHub Packages via le workflow `publish.yml` au push d'un tag `v*` :
+Les releases sont publiées automatiquement sur GitHub Packages via le workflow `publish.yml` au push d'un tag `v*`.
+
+**Prérequis (une seule fois, admin organisation)** : créer un PAT GitHub avec scope `write:packages` et l'ajouter comme secret de repository sous le nom `NPM_TOKEN` (Settings → Secrets → Actions). Le `GITHUB_TOKEN` ne peut pas être utilisé car les write permissions de workflow sont désactivées au niveau de l'organisation.
 
 ```bash
-git tag v0.1.0
-git push origin v0.1.0
+git tag v0.2.0
+git push origin v0.2.0
 ```
 
 ## Contribuer

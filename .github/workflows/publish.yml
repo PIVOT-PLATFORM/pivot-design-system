@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      packages: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -23,4 +22,6 @@ jobs:
       - run: npm run build
       - run: cd dist && npm publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Requires a PAT with write:packages scope stored as repository secret NPM_TOKEN.
+          # GITHUB_TOKEN cannot be used — org-level workflow write permissions are disabled.
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
