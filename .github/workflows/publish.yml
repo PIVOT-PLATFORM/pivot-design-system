@@ -10,18 +10,17 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      packages: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '24'
           cache: 'npm'
           registry-url: 'https://npm.pkg.github.com'
-          scope: '@pivot'
+          scope: '@pivot-platform'
       - run: npm ci
       - run: npm run build
-      - run: cd dist && npm publish
+      - run: npm publish dist
         env:
-          # Requires a PAT with write:packages scope stored as repository secret NPM_TOKEN.
-          # GITHUB_TOKEN cannot be used — org-level workflow write permissions are disabled.
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { ConfirmDialogComponent } from './confirm-dialog.component';
 
 @Component({
+  selector: 'test-projection-host',
   standalone: true,
   imports: [ConfirmDialogComponent],
   template: `
