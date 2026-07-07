@@ -5,7 +5,7 @@ import { TranslocoTestingModule } from '@jsverse/transloco';
 import { ToastComponent } from './toast.component';
 import { ToastService } from './toast.service';
 
-@Component({ template: '', standalone: true })
+@Component({ selector: 'test-stub-route', template: '', standalone: true })
 class StubRoute {}
 
 describe('ToastComponent (design-system lib)', () => {
