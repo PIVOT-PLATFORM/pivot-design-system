@@ -1,5 +1,5 @@
 {
-  "name": "@pivot/design-system",
+  "name": "@pivot-platform/design-system",
   "version": "0.1.0",
   "description": "PIVOT Design System — Angular CDK components, tokens, SCSS BEM",
   "author": "PIVOT Platform",

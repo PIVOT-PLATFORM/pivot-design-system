@@ -1,4 +1,4 @@
-# @pivot/design-system
+# @pivot-platform/design-system
 
 Design system Angular de la suite PIVOT — Angular CDK (comportement/a11y) + SCSS BEM custom (visuel).
 
@@ -7,7 +7,7 @@ Stack actée par ADR-007 : aucune lib visuelle tierce (Material / PrimeNG / Taig
 ## Installation
 
 ```bash
-npm install @pivot/design-system --registry https://npm.pkg.github.com
+npm install @pivot-platform/design-system --registry https://npm.pkg.github.com
 ```
 
 Prérequis pairs (peerDependencies) :
@@ -20,18 +20,18 @@ npm install @angular/cdk @jsverse/transloco
 
 | Composant | Import |
 |-----------|--------|
-| `ConfirmDialogComponent` | `@pivot/design-system` |
-| `ToastComponent` | `@pivot/design-system` |
-| `ToastService` | `@pivot/design-system` |
-| `PasswordStrengthComponent` | `@pivot/design-system` |
-| `PasswordPolicyService` | `@pivot/design-system` |
+| `ConfirmDialogComponent` | `@pivot-platform/design-system` |
+| `ToastComponent` | `@pivot-platform/design-system` |
+| `ToastService` | `@pivot-platform/design-system` |
+| `PasswordStrengthComponent` | `@pivot-platform/design-system` |
+| `PasswordPolicyService` | `@pivot-platform/design-system` |
 
 ## Tokens SCSS
 
 ```scss
-@use '@pivot/design-system/scss/tokens';
-@use '@pivot/design-system/scss/reset';
-@use '@pivot/design-system/scss/components';
+@use '@pivot-platform/design-system/scss/tokens';
+@use '@pivot-platform/design-system/scss/reset';
+@use '@pivot-platform/design-system/scss/components';
 ```
 
 ## Storybook
