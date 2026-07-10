@@ -1,0 +1,52 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+permissions: read-all
+
+jobs:
+  release:
+    name: Build & release (semantic-release)
+    runs-on: ubuntu-latest
+    if: github.actor != 'dependabot[bot]'
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      packages: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js 24
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@pivot-platform'
+
+      - name: Install dependencies
+        run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build (ng-packagr)
+        run: npm run build
+
+      # semantic-release calcule la prochaine version depuis l'historique de commits
+      # (Conventional Commits) — aucun bump manuel de package.json en amont. Il bump la
+      # version dans dist/package.json (pkgRoot: "dist", voir .releaserc.json), génère
+      # CHANGELOG.md, crée le tag git + la GitHub Release, et publie dist/ sur GitHub
+      # Packages via @semantic-release/npm. Ne fait rien (exit 0) si aucun commit
+      # releasable depuis le dernier tag.
+      - name: Semantic Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release

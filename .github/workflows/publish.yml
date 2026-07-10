@@ -12,14 +12,24 @@ jobs:
       contents: read
       packages: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: '24'
           cache: 'npm'
           registry-url: 'https://npm.pkg.github.com'
           scope: '@pivot-platform'
       - run: npm ci
+      - name: Verify tag matches package.json version
+        # #2 — ce workflow ne se déclenche que sur un tag `v*` poussé manuellement (filet de
+        # secours, voir release.yml pour le flux normal semantic-release). Un tag oublié de
+        # bumper ou un package.json non aligné publierait silencieusement la mauvaise version.
+        run: |
+          PKG_VERSION="v$(node -p "require('./package.json').version")"
+          if [ "$PKG_VERSION" != "$GITHUB_REF_NAME" ]; then
+            echo "::error::Le tag ${GITHUB_REF_NAME} ne correspond pas à la version package.json (${PKG_VERSION})"
+            exit 1
+          fi
       - run: npm run build
       - run: npm publish dist
         env:
