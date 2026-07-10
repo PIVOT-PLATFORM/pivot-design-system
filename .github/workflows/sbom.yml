@@ -1,0 +1,64 @@
+name: SBOM
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions: read-all
+
+jobs:
+  sbom:
+    name: SBOM - CycloneDX (npm)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js 24
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install dependencies (sans scripts)
+        run: npm ci --ignore-scripts
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # #4 — le registre GitHub Packages ne supporte pas `npm publish --provenance`
+      # (spécifique à npmjs.org) : pas de provenance npm native possible ici. Un SBOM
+      # CycloneDX reste générable et utile pour les consommateurs (pivot-ui,
+      # pivot-collaboratif-ui, ...) — c'est le minimum retenu, sans la logique de diff
+      # vs release précédente utilisée ailleurs dans l'écosystème (hors scope ici).
+      - name: Generate SBOM (npm CycloneDX)
+        run: |
+          npm sbom \
+            --omit dev \
+            --package-lock-only \
+            --sbom-format cyclonedx \
+            --sbom-type application \
+            > sbom.cdx.json
+
+      - name: Upload SBOM as CI artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: sbom-${{ github.event.release.tag_name || github.sha }}
+          path: sbom.cdx.json
+          retention-days: 365
+
+      - name: Attach SBOM to GitHub Release
+        if: github.event_name == 'release'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload "${{ github.event.release.tag_name }}" \
+            sbom.cdx.json \
+            --clobber \
+            --repo "${{ github.repository }}"
