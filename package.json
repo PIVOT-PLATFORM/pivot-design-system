@@ -51,7 +51,8 @@
     "semantic-release": "^25.0.5",
     "tslib": "^2.3.0",
     "typescript": "~6.0.0",
-    "vitest": "^4.0.8"
+    "vitest": "^4.0.8",
+    "vitest-axe": "^0.1.0"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
