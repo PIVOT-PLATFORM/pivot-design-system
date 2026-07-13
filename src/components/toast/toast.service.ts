@@ -1,7 +1,12 @@
 import { Injectable, signal } from '@angular/core';
 
-/** Types visuels de toast supportés par le shell PIVOT. */
-export type ToastType = 'info' | 'warning' | 'error';
+/**
+ * Types visuels de toast supportés par le design system PIVOT.
+ *
+ * `success` complète `info`/`warning`/`error` pour les confirmations d'action
+ * (sauvegarde, suppression…) consommées par les modules (agilité, collaboratif).
+ */
+export type ToastType = 'info' | 'success' | 'warning' | 'error';
 
 /** Lien d'action optionnel affiché dans un toast (clé Transloco, jamais de libellé en dur). */
 export interface ToastAction {

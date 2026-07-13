@@ -29,6 +29,7 @@ class StoryTranslocoLoader implements TranslocoLoader {
       <h3 style="margin-bottom: 16px; color: var(--color-gray-900);">Toast Container Demo</h3>
       <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;">
         <button class="btn btn-secondary" (click)="showInfo()">Info toast</button>
+        <button class="btn btn-secondary" (click)="showSuccess()">Success toast</button>
         <button class="btn btn-secondary" (click)="showWarning()">Warning toast</button>
         <button class="btn btn-danger" (click)="showError()">Error toast</button>
       </div>
@@ -41,6 +42,9 @@ class ToastDemoComponent {
 
   showInfo(): void {
     this.toastService.show('common.close', 'info');
+  }
+  showSuccess(): void {
+    this.toastService.show('common.close', 'success');
   }
   showWarning(): void {
     this.toastService.show('auth.session.expired', 'warning');
@@ -72,10 +76,11 @@ const meta: Meta<ToastDemoComponent> = {
         component: `
 Conteneur global de toasts du shell PIVOT.
 
-- \`role="alert"\` sur chaque toast (annonce ARIA immédiate)
+- Live region ARIA adaptée au type : \`role="status"\` (polie) pour \`info\`/\`success\`,
+  \`role="alert"\` (assertive) pour \`warning\`/\`error\`
 - Clés Transloco — jamais de libellé en dur
 - Auto-dismiss après 8s, fermeture manuelle via le bouton ×
-- Types : \`info\`, \`warning\`, \`error\`
+- Types : \`info\`, \`success\`, \`warning\`, \`error\`
 - EN17.8 — copie incubée depuis \`src/app/shared/toast\`
         `,
       },

@@ -53,6 +53,17 @@ describe('ToastComponent (design-system lib)', () => {
     expect(toast?.classList.contains('toast--warning')).toBe(true);
   });
 
+  it('renders a success toast with role="status" (polite) and the success modifier', () => {
+    toastService.show('auth.session.expired', 'success');
+    fixture.detectChanges();
+
+    const toast = (fixture.nativeElement as HTMLElement).querySelector('.toast');
+    expect(toast).not.toBeNull();
+    // Confirmations are non-critical → polite live region, not assertive `alert`.
+    expect(toast?.getAttribute('role')).toBe('status');
+    expect(toast?.classList.contains('toast--success')).toBe(true);
+  });
+
   it('close button has a translated aria-label and dismisses the toast', () => {
     toastService.show('auth.session.expired', 'warning');
     fixture.detectChanges();
