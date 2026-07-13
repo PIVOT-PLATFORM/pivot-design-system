@@ -11,6 +11,8 @@ export default defineConfig({
       provider: 'v8',
       reporter: ['lcov', 'text', 'html'],
       reportsDirectory: './coverage',
+      // Code tiers vendoré (Spartan brain) exclu de la couverture — testé en amont + Storybook.
+      exclude: ['src/vendor/**', 'src/**/*.spec.ts', 'src/**/*.stories.ts', 'src/test-setup.ts'],
       thresholds: {
         statements: 90,
         lines: 90,

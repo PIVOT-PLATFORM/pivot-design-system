@@ -20,6 +20,10 @@ export * from './components/checkbox/checkbox.component';
 export * from './components/radio-group/radio-group.component';
 export * from './components/switch/switch.component';
 export * from './components/select/select.component';
+// EN17.15 (Vague 2) — tooltip : skin PIVOT du brain Spartan vendoré (src/vendor/spartan-brain).
+// BrnTooltip réexporté car ng-packagr l'exige (composé en hostDirective par TooltipDirective).
+export { BrnTooltip } from './vendor/spartan-brain/tooltip';
+export * from './components/tooltip/tooltip.directive';
 export * from './components/confirm-dialog/confirm-dialog.component';
 export * from './components/toast/toast.service';
 export * from './components/toast/toast.component';
