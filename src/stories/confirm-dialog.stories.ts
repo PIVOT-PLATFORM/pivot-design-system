@@ -45,7 +45,8 @@ export const Default: Story = {
     open: true,
     role: 'alertdialog',
     title: 'Désactiver le module Whiteboard ?',
-    message: 'Les utilisateurs connectés seront déconnectés du module. Cette action est réversible.',
+    message:
+      'Les utilisateurs connectés seront déconnectés du module. Cette action est réversible.',
     confirmLabel: 'Désactiver',
     cancelLabel: 'Annuler',
     confirmDisabled: false,
@@ -83,7 +84,7 @@ export const Closed: Story = {
   args: {
     open: false,
     title: 'Dialog fermé',
-    message: 'Ce dialog est fermé, rien ne s\'affiche.',
+    message: "Ce dialog est fermé, rien ne s'affiche.",
     confirmLabel: 'Confirmer',
     cancelLabel: 'Annuler',
   },

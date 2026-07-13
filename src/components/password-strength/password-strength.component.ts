@@ -1,9 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
-import {
-  PasswordCriteria,
-  PasswordPolicyService,
-} from './password-policy.service';
+import { PasswordCriteria, PasswordPolicyService } from './password-policy.service';
 
 /** Clés des critères affichés dans la checklist — ordre d'affichage. */
 interface CriterionView {
@@ -64,8 +61,16 @@ export class PasswordStrengthComponent {
     const p = this.policy();
     const c = this.criteria();
     return [
-      { labelKey: 'auth.password.strength.criteria.min_length', count: p.minLength, met: c.minLength },
-      { labelKey: 'auth.password.strength.criteria.uppercase', count: p.minUppercase, met: c.uppercase },
+      {
+        labelKey: 'auth.password.strength.criteria.min_length',
+        count: p.minLength,
+        met: c.minLength,
+      },
+      {
+        labelKey: 'auth.password.strength.criteria.uppercase',
+        count: p.minUppercase,
+        met: c.uppercase,
+      },
       { labelKey: 'auth.password.strength.criteria.digit', count: p.minDigits, met: c.digit },
       { labelKey: 'auth.password.strength.criteria.special', count: p.minSpecial, met: c.special },
     ];

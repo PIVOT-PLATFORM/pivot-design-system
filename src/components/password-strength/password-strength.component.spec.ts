@@ -188,7 +188,9 @@ describe('PasswordStrengthComponent (design-system lib)', () => {
       expect(component.criteriaId()).toBe('register-password-criteria');
 
       const meterEl: HTMLElement = fixture.nativeElement.querySelector('#register-password-meter');
-      const criteriaEl: HTMLElement = fixture.nativeElement.querySelector('#register-password-criteria');
+      const criteriaEl: HTMLElement = fixture.nativeElement.querySelector(
+        '#register-password-criteria',
+      );
       expect(meterEl).not.toBeNull();
       expect(criteriaEl).not.toBeNull();
     });
@@ -233,7 +235,9 @@ describe('PasswordStrengthComponent (design-system lib)', () => {
       flushDefaultPolicy();
       fixture.detectChanges();
 
-      const list: HTMLElement = fixture.nativeElement.querySelector('ul.password-strength__criteria');
+      const list: HTMLElement = fixture.nativeElement.querySelector(
+        'ul.password-strength__criteria',
+      );
       expect(list).not.toBeNull();
       expect(list.id).toBe(component.criteriaId());
     });

@@ -73,10 +73,15 @@ describe('ToastService', () => {
   });
 
   it('show() attaches an optional action link', () => {
-    service.show('modules.guard.disabled', 'warning', { module: 'whiteboard' }, {
-      labelKey: 'modules.guard.adminLink',
-      route: '/admin/modules',
-    });
+    service.show(
+      'modules.guard.disabled',
+      'warning',
+      { module: 'whiteboard' },
+      {
+        labelKey: 'modules.guard.adminLink',
+        route: '/admin/modules',
+      },
+    );
 
     expect(service.toasts()[0].action).toEqual({
       labelKey: 'modules.guard.adminLink',
