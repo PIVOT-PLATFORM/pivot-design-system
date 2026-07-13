@@ -1,3 +1,10 @@
+# [0.6.0](https://github.com/PIVOT-PLATFORM/pivot-design-system/compare/v0.5.0...v0.6.0) (2026-07-13)
+
+
+### Features
+
+* **tooltip:** pivot-ds tooltip sur Spartan brain vendoré (EN17.15 Vague 2) ([#19](https://github.com/PIVOT-PLATFORM/pivot-design-system/issues/19)) ([7764c36](https://github.com/PIVOT-PLATFORM/pivot-design-system/commit/7764c360d22266038edd53d2d50737db2e8f02fd))
+
 # [0.5.0](https://github.com/PIVOT-PLATFORM/pivot-design-system/compare/v0.4.0...v0.5.0) (2026-07-13)
 
 
