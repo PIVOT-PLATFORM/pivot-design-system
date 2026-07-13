@@ -19,10 +19,17 @@ import { Component } from '@angular/core';
           Brand colors (violet)
         </h2>
         <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-          <div *ngFor="let token of brandTokens" style="text-align: center;">
-            <div [style.background]="'var(' + token + ')'" style="width: 64px; height: 64px; border-radius: 8px; border: 1px solid rgba(0,0,0,.1);"></div>
-            <p style="font-size: 10px; margin-top: 4px; color: var(--color-gray-600);">{{ token }}</p>
-          </div>
+          @for (token of brandTokens; track token) {
+            <div style="text-align: center;">
+              <div
+                [style.background]="'var(' + token + ')'"
+                style="width: 64px; height: 64px; border-radius: 8px; border: 1px solid rgba(0,0,0,.1);"
+              ></div>
+              <p style="font-size: 10px; margin-top: 4px; color: var(--color-gray-600);">
+                {{ token }}
+              </p>
+            </div>
+          }
         </div>
       </section>
 
@@ -31,10 +38,17 @@ import { Component } from '@angular/core';
           Semantic colors
         </h2>
         <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-          <div *ngFor="let s of semanticTokens">
-            <div [style.background]="'var(' + s.token + ')'" style="width: 80px; height: 40px; border-radius: 4px;"></div>
-            <p style="font-size: 10px; margin-top: 4px; color: var(--color-gray-600);">{{ s.label }}</p>
-          </div>
+          @for (s of semanticTokens; track s.token) {
+            <div>
+              <div
+                [style.background]="'var(' + s.token + ')'"
+                style="width: 80px; height: 40px; border-radius: 4px;"
+              ></div>
+              <p style="font-size: 10px; margin-top: 4px; color: var(--color-gray-600);">
+                {{ s.label }}
+              </p>
+            </div>
+          }
         </div>
       </section>
 
@@ -81,7 +95,8 @@ const meta: Meta<TokenShowcaseComponent> = {
   parameters: {
     docs: {
       description: {
-        component: 'Aperçu des design tokens CSS custom properties du design system PIVOT (EN17.8). Source : `projects/design-system/src/scss/tokens.scss`.',
+        component:
+          'Aperçu des design tokens CSS custom properties du design system PIVOT (EN17.8). Source : `projects/design-system/src/scss/tokens.scss`.',
       },
     },
   },

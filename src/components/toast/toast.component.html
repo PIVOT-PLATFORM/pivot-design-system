@@ -13,7 +13,8 @@
           class="toast__action"
           [routerLink]="toast.action.route"
           (click)="toastService.dismiss(toast.id)"
-        >{{ toast.action.labelKey | transloco }}</a>
+          >{{ toast.action.labelKey | transloco }}</a
+        >
       }
       <button
         type="button"

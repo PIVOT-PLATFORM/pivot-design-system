@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { applicationConfig, moduleMetadata } from '@storybook/angular';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { TranslocoModule, provideTransloco, TranslocoLoader } from '@jsverse/transloco';
 import { Injectable } from '@angular/core';
@@ -37,11 +37,17 @@ class StoryTranslocoLoader implements TranslocoLoader {
   `,
 })
 class ToastDemoComponent {
-  constructor(private readonly toastService: ToastService) {}
+  private readonly toastService = inject(ToastService);
 
-  showInfo(): void { this.toastService.show('common.close', 'info'); }
-  showWarning(): void { this.toastService.show('auth.session.expired', 'warning'); }
-  showError(): void { this.toastService.show('auth.session.expired', 'error'); }
+  showInfo(): void {
+    this.toastService.show('common.close', 'info');
+  }
+  showWarning(): void {
+    this.toastService.show('auth.session.expired', 'warning');
+  }
+  showError(): void {
+    this.toastService.show('auth.session.expired', 'error');
+  }
 }
 
 const meta: Meta<ToastDemoComponent> = {

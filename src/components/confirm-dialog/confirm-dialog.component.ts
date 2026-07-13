@@ -33,12 +33,22 @@ import { FocusTrap, FocusTrapFactory } from '@angular/cdk/a11y';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (open) {
-      <div class="confirm-dialog__backdrop" data-testid="confirm-dialog-backdrop" (click)="cancel()">
+      <div
+        class="confirm-dialog__backdrop"
+        data-testid="confirm-dialog-backdrop"
+        role="button"
+        tabindex="0"
+        [attr.aria-label]="cancelLabel"
+        (click)="cancel()"
+        (keydown.enter)="cancel()"
+        (keydown.space)="cancel()"
+      >
         <div
           #dialogEl
           class="confirm-dialog"
           [attr.role]="role"
           aria-modal="true"
+          tabindex="-1"
           [attr.aria-labelledby]="titleId"
           [attr.aria-describedby]="messageId"
           data-testid="confirm-dialog"

@@ -1,9 +1,9 @@
-import { ɵresolveComponentResources as resolveComponentResources, provideZonelessChangeDetection } from '@angular/core';
-import { getTestBed } from '@angular/core/testing';
 import {
-  BrowserTestingModule,
-  platformBrowserTesting,
-} from '@angular/platform-browser/testing';
+  ɵresolveComponentResources as resolveComponentResources,
+  provideZonelessChangeDetection,
+} from '@angular/core';
+import { getTestBed } from '@angular/core/testing';
+import { BrowserTestingModule, platformBrowserTesting } from '@angular/platform-browser/testing';
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { beforeEach } from 'vitest';

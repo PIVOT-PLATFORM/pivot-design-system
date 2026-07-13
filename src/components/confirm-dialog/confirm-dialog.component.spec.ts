@@ -59,7 +59,9 @@ describe('ConfirmDialogComponent (design-system lib)', () => {
     component.open = true;
     fixture.detectChanges();
     expect(fixture.nativeElement.textContent).toContain('Désactiver whiteboard ?');
-    expect(fixture.nativeElement.textContent).toContain('Les utilisateurs connectés seront bloqués. Confirmer ?');
+    expect(fixture.nativeElement.textContent).toContain(
+      'Les utilisateurs connectés seront bloqués. Confirmer ?',
+    );
   });
 
   it('emits confirmed when the confirm button is clicked', () => {
@@ -145,20 +147,26 @@ describe('ConfirmDialogComponent (design-system lib)', () => {
     component.open = true;
     component.confirmDisabled = true;
     fixture.detectChanges();
-    const confirmBtn = fixture.nativeElement.querySelector('[data-testid="confirm-dialog-confirm"]');
+    const confirmBtn = fixture.nativeElement.querySelector(
+      '[data-testid="confirm-dialog-confirm"]',
+    );
     expect(confirmBtn.disabled).toBe(true);
   });
 
   it('enables the confirm button by default', () => {
     component.open = true;
     fixture.detectChanges();
-    const confirmBtn = fixture.nativeElement.querySelector('[data-testid="confirm-dialog-confirm"]');
+    const confirmBtn = fixture.nativeElement.querySelector(
+      '[data-testid="confirm-dialog-confirm"]',
+    );
     expect(confirmBtn.disabled).toBe(false);
   });
 
   it('projects caller content inside the dialog (US02.2.4)', async () => {
     const hostFixture = TestBed.createComponent(ProjectionHostComponent);
     hostFixture.detectChanges();
-    expect(hostFixture.nativeElement.querySelector('[data-testid="projected-body"]')).not.toBeNull();
+    expect(
+      hostFixture.nativeElement.querySelector('[data-testid="projected-body"]'),
+    ).not.toBeNull();
   });
 });

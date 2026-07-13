@@ -62,16 +62,16 @@ export class ToastService {
     messageKey: string,
     type: ToastType = 'info',
     params?: Record<string, string | number>,
-    action?: ToastAction
+    action?: ToastAction,
   ): number {
     const existing = this._toasts().find(
-      t => t.messageKey === messageKey && JSON.stringify(t.params) === JSON.stringify(params)
+      (t) => t.messageKey === messageKey && JSON.stringify(t.params) === JSON.stringify(params),
     );
     if (existing) {
       return existing.id;
     }
     const id = ++this.nextId;
-    this._toasts.update(list => [...list, { id, messageKey, type, params, action }]);
+    this._toasts.update((list) => [...list, { id, messageKey, type, params, action }]);
     setTimeout(() => this.dismiss(id), TOAST_AUTO_DISMISS_MS);
     return id;
   }
@@ -82,6 +82,6 @@ export class ToastService {
    * @param id identifiant retourné par {@link show}
    */
   dismiss(id: number): void {
-    this._toasts.update(list => list.filter(t => t.id !== id));
+    this._toasts.update((list) => list.filter((t) => t.id !== id));
   }
 }
