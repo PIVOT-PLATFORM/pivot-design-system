@@ -141,3 +141,9 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# Storybook build output — jamais committé (généré par `npm run build-storybook`)
+storybook-static/
+
+# Angular build cache (généré par la cible de build Angular utilisée par Storybook)
+.angular/
