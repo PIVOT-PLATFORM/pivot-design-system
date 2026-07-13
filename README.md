@@ -40,9 +40,21 @@ voir [`DESIGN-SYSTEM.md`](./DESIGN-SYSTEM.md) — la référence complète.
 
 ## Storybook
 
+Storybook publié (source de vérité visuelle) : **<https://pivot-platform.github.io/pivot-design-system/>**
+— déployé automatiquement sur GitHub Pages à chaque push sur `main` (workflow
+`deploy-storybook.yml`).
+
+En local :
+
 ```bash
-npm run storybook
+npm run storybook        # dev, port 6006
+npm run build-storybook  # build statique dans storybook-static/
 ```
+
+> Activation Pages (une seule fois) : le workflow active GitHub Pages en source
+> « GitHub Actions » automatiquement au premier run (`configure-pages` avec `enablement: true`).
+> Si les réglages de l'organisation le bloquent, l'activer manuellement dans
+> Settings → Pages → Source : GitHub Actions.
 
 ## Build
 
