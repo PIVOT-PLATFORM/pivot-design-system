@@ -8,6 +8,10 @@
  */
 
 // ─── Components ──────────────────────────────────────────────────────────────
+// EN17.13 (Vague 0) — fondations : icône SVG inline + registre, enveloppe de champ.
+export * from './components/icon/icon-registry';
+export * from './components/icon/icon.component';
+export * from './components/form-field/form-field.component';
 export * from './components/confirm-dialog/confirm-dialog.component';
 export * from './components/toast/toast.service';
 export * from './components/toast/toast.component';
