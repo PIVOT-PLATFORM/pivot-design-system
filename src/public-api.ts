@@ -12,6 +12,13 @@
 export * from './components/icon/icon-registry';
 export * from './components/icon/icon.component';
 export * from './components/form-field/form-field.component';
+// EN17.14 (Vague 1) — socle formulaires.
+export * from './components/button/button.component';
+export * from './components/input/input.component';
+export * from './components/textarea/textarea.component';
+export * from './components/checkbox/checkbox.component';
+export * from './components/radio-group/radio-group.component';
+export * from './components/switch/switch.component';
 export * from './components/confirm-dialog/confirm-dialog.component';
 export * from './components/toast/toast.service';
 export * from './components/toast/toast.component';
