@@ -97,6 +97,86 @@ describe('PasswordStrengthComponent (design-system lib)', () => {
     });
   });
 
+  describe('DOM — strength bar fill state', () => {
+    it('renders no bar/level at all when the password is empty (level is null)', () => {
+      fixture.componentRef.setInput('password', '');
+      fixture.detectChanges();
+      flushDefaultPolicy();
+      fixture.detectChanges();
+
+      expect(fixture.nativeElement.querySelector('.password-strength__bar')).toBeNull();
+      expect(fixture.nativeElement.querySelector('.password-strength__level')).toBeNull();
+    });
+
+    it('applies the weak fill modifier and no medium/strong modifier for a weak password', () => {
+      fixture.componentRef.setInput('password', 'short');
+      fixture.detectChanges();
+      flushDefaultPolicy();
+      fixture.detectChanges();
+
+      const fill: HTMLElement = fixture.nativeElement.querySelector('.password-strength__fill');
+      expect(fill.classList.contains('password-strength__fill--weak')).toBe(true);
+      expect(fill.classList.contains('password-strength__fill--medium')).toBe(false);
+      expect(fill.classList.contains('password-strength__fill--strong')).toBe(false);
+    });
+
+    it('applies the medium fill modifier for a compliant, sub-strong password', () => {
+      fixture.componentRef.setInput('password', 'Abcdefghi1!x');
+      fixture.detectChanges();
+      flushDefaultPolicy();
+      fixture.detectChanges();
+
+      const fill: HTMLElement = fixture.nativeElement.querySelector('.password-strength__fill');
+      expect(fill.classList.contains('password-strength__fill--medium')).toBe(true);
+      expect(fill.classList.contains('password-strength__fill--weak')).toBe(false);
+      expect(fill.classList.contains('password-strength__fill--strong')).toBe(false);
+    });
+
+    it('applies the strong fill modifier once the strong-length threshold is reached', () => {
+      fixture.componentRef.setInput('password', 'Abcdefghi1!xyzzy');
+      fixture.detectChanges();
+      flushDefaultPolicy();
+      fixture.detectChanges();
+
+      const fill: HTMLElement = fixture.nativeElement.querySelector('.password-strength__fill');
+      expect(fill.classList.contains('password-strength__fill--strong')).toBe(true);
+      expect(fill.classList.contains('password-strength__fill--medium')).toBe(false);
+      expect(fill.classList.contains('password-strength__fill--weak')).toBe(false);
+    });
+  });
+
+  describe('DOM — criteria checklist per-criterion state', () => {
+    it('marks only the satisfied criteria with the --met modifier (partial policy failure)', () => {
+      // 12 lowercase-ish with one upper: length + uppercase met, digit + special unmet.
+      fixture.componentRef.setInput('password', 'Abcdefghijkl');
+      fixture.detectChanges();
+      flushDefaultPolicy();
+      fixture.detectChanges();
+
+      const items = fixture.debugElement
+        .queryAll(By.css('li.password-strength__criterion'))
+        .map((d) => (d.nativeElement as HTMLElement).classList.contains('password-strength__criterion--met'));
+      // Order: min_length, uppercase, digit, special.
+      expect(items).toEqual([true, true, false, false]);
+    });
+
+    it('renders a check icon (polyline) for met and a cross icon (line) for unmet criteria', () => {
+      fixture.componentRef.setInput('password', 'Abcdefghijkl'); // digit + special unmet
+      fixture.detectChanges();
+      flushDefaultPolicy();
+      fixture.detectChanges();
+
+      const items = fixture.debugElement.queryAll(By.css('li.password-strength__criterion'));
+      const digitItem = items[2].nativeElement as HTMLElement;
+      const lengthItem = items[0].nativeElement as HTMLElement;
+      // Met criterion -> check icon uses <polyline>; unmet -> cross uses <line>.
+      expect(lengthItem.querySelector('polyline')).not.toBeNull();
+      expect(lengthItem.querySelector('line')).toBeNull();
+      expect(digitItem.querySelector('line')).not.toBeNull();
+      expect(digitItem.querySelector('polyline')).toBeNull();
+    });
+  });
+
   describe('DOM — accessibility', () => {
     it('exposes meterId/criteriaId derived from idPrefix for aria-describedby wiring', () => {
       fixture.componentRef.setInput('idPrefix', 'register-password');
