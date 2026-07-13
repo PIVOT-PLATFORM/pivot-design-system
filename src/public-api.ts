@@ -19,6 +19,7 @@ export * from './components/textarea/textarea.component';
 export * from './components/checkbox/checkbox.component';
 export * from './components/radio-group/radio-group.component';
 export * from './components/switch/switch.component';
+export * from './components/select/select.component';
 export * from './components/confirm-dialog/confirm-dialog.component';
 export * from './components/toast/toast.service';
 export * from './components/toast/toast.component';
