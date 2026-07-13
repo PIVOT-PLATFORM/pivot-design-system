@@ -1,10 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { FormControl } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
-import {
-  provideHttpClientTesting,
-  HttpTestingController,
-} from '@angular/common/http/testing';
+import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
 import {
   DEFAULT_PASSWORD_POLICY,
   DESIGN_SYSTEM_API_URL,
@@ -30,9 +27,7 @@ describe('PasswordPolicyService (design-system lib)', () => {
       providers: [
         provideHttpClient(),
         provideHttpClientTesting(),
-        ...(apiUrl === null
-          ? []
-          : [{ provide: DESIGN_SYSTEM_API_URL, useValue: apiUrl }]),
+        ...(apiUrl === null ? [] : [{ provide: DESIGN_SYSTEM_API_URL, useValue: apiUrl }]),
       ],
     });
     return {
