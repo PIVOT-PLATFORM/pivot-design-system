@@ -2,7 +2,7 @@
  * Tests d'accessibilité automatisés (axe-core) — ToastComponent (conteneur).
  *
  * Rend le conteneur global avec un toast actif (poussé via ToastService) puis
- * lance une passe axe complète sur le DOM (role="alert", bouton de fermeture
+ * lance une passe axe complète sur le DOM (live region role status/alert, bouton de fermeture
  * avec aria-label traduit, glyphe aria-hidden).
  *
  * Nouveau fichier dédié (`*.a11y.spec.ts`) pour éviter tout conflit avec les
