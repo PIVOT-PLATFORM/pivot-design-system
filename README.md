@@ -32,7 +32,11 @@ npm install @angular/cdk @jsverse/transloco
 @use '@pivot-platform/design-system/scss/tokens';
 @use '@pivot-platform/design-system/scss/reset';
 @use '@pivot-platform/design-system/scss/components';
+@use '@pivot-platform/design-system/scss/patterns';
 ```
+
+Motifs `pv-*` (avatar, badge, dot, glyph, cartes, modale, tons sémantiques, glass…) :
+voir [`DESIGN-SYSTEM.md`](./DESIGN-SYSTEM.md) — la référence complète.
 
 ## Storybook
 
