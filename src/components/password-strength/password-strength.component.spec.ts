@@ -155,7 +155,9 @@ describe('PasswordStrengthComponent (design-system lib)', () => {
 
       const items = fixture.debugElement
         .queryAll(By.css('li.password-strength__criterion'))
-        .map((d) => (d.nativeElement as HTMLElement).classList.contains('password-strength__criterion--met'));
+        .map((d) =>
+          (d.nativeElement as HTMLElement).classList.contains('password-strength__criterion--met'),
+        );
       // Order: min_length, uppercase, digit, special.
       expect(items).toEqual([true, true, false, false]);
     });
