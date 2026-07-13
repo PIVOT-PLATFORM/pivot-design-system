@@ -521,3 +521,25 @@
     background: rgba(255, 255, 255, 0.12);
   }
 }
+
+// ── Tooltip (EN17.15) — contenu rendu dans l'overlay CDK, d'où un motif global.
+// Skin PIVOT du comportement headless vendoré (Spartan brain, cf. src/vendor/spartan-brain).
+.pv-tooltip {
+  max-width: 260px;
+  padding: 6px 10px;
+  border-radius: var(--radius-md);
+  background: var(--color-navy-800);
+  color: #fff;
+  font-size: var(--text-xs);
+  line-height: 1.4;
+  box-shadow: var(--shadow-md);
+}
+
+.pv-tooltip__arrow {
+  color: var(--color-navy-800);
+}
+
+.pv-tooltip__svg {
+  display: block;
+  fill: var(--color-navy-800);
+}

@@ -7,7 +7,14 @@ const prettier = require('eslint-config-prettier');
 module.exports = tseslint.config(
   {
     // Périmètre : code source uniquement ; artefacts de build et vendored ignorés.
-    ignores: ['dist/**', 'out-tsc/**', 'coverage/**', 'node_modules/**', '.storybook/**'],
+    ignores: [
+      'dist/**',
+      'out-tsc/**',
+      'coverage/**',
+      'node_modules/**',
+      '.storybook/**',
+      'src/vendor/**',
+    ],
   },
   {
     files: ['src/**/*.ts'],
