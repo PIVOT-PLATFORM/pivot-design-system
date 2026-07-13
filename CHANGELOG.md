@@ -1,3 +1,10 @@
+# [0.5.0](https://github.com/PIVOT-PLATFORM/pivot-design-system/compare/v0.4.0...v0.5.0) (2026-07-13)
+
+
+### Features
+
+* **components:** select CDK — listbox + overlay (EN17.14 Vague 1) ([#18](https://github.com/PIVOT-PLATFORM/pivot-design-system/issues/18)) ([39b412a](https://github.com/PIVOT-PLATFORM/pivot-design-system/commit/39b412a8ba301470920656a8896a8b02bc3c3528))
+
 # [0.4.0](https://github.com/PIVOT-PLATFORM/pivot-design-system/compare/v0.3.0...v0.4.0) (2026-07-13)
 
 
